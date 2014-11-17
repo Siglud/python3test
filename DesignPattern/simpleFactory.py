@@ -18,7 +18,7 @@ class Circle(Shape):
         self.__radius = radius
 
     def draw(self):
-        print "Draw a circle"
+        print("Draw a circle")
 
     def erase(self):
         print("erase circle")

@@ -28,6 +28,7 @@ class ForeignWorker(Worker):
 
 class Translator(Worker):
     def __init__(self, name):
+        super().__init__(name)
         self.foreignWorker = ForeignWorker(name)
 
     def working(self):

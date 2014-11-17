@@ -19,7 +19,7 @@ class Observer(object):
         self.display()
 
     def display(self):
-        print self.integer, self.double, self.string
+        print(self.integer, self.double, self.string)
 
 
 class Subject(object):
