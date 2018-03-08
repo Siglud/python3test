@@ -7,7 +7,8 @@ from functools import lru_cache
 import aio_pika
 from aio_pika import ExchangeType, IncomingMessage
 from aio_pika.message import Message
-from tornado import web, websocket
+from tornado import web, websocket, netutil, process
+from tornado.httpserver import HTTPServer
 from tornado.platform.asyncio import AsyncIOMainLoop
 
 
@@ -99,6 +100,10 @@ if __name__ == '__main__':
         ('^/chat', ChatHandler),
         ('^/', IndexHandler)
     ])
+
+    sockets = netutil.bind_sockets(8000)
+    process.fork_processes(0)
     AsyncIOMainLoop().install()
-    app.listen(8000)
+    server = HTTPServer(app)
+    server.add_sockets(sockets)
     asyncio.get_event_loop().run_forever()
